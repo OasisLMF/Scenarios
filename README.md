@@ -1,4 +1,4 @@
-# Scenarios
+# Scenarios in Oasis
 
 This project to build scenarios in Oasis LMF has been funded by the ***Insurance Development Forum*** (IDF) and the focus is to provide open access to scenarios of various perils and regions for the developing world. These scenarios will be accompanied by vulnerability functions to create a small, deterministic model that can provide a loss curve for each event. The scope of the project has also been expanded to the more developed regions with scenarios for US, Europe and some parts of Asia-Pac. These deterministic models will have many use cases such as RDS (realistic disaster scenarios) analytics, benchmarking and validation.
 
