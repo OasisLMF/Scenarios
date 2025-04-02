@@ -1,0 +1,7 @@
+{
+    "type": "footprint",
+    "paths_by_peril": {
+        "FLRF": "GHA_T1000_R11_E635900_FLRF_U_RD_30m_4326.tif",
+        "FLSW": "GHA_T1000_R11_E635900_FLSW_U_RD_30m_4326.tif"
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "type": "footprint",
+    "paths_by_peril": {
+        "FLRF": "NPL_T1000_R05_E505423_FLRF_U_RD_30m_4326.tif",
+        "FLSW": "NPL_T1000_R05_E505423_FLSW_U_RD_30m_4326.tif"
+    }
+}
