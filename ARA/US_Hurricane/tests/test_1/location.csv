@@ -1,0 +1,2 @@
+PortNumber,AccNumber,LocNumber,LocName,Latitude,Longitude,ConstructionCode,BuildingTIV,OtherTIV,ContentsTIV,BITIV,LocPerilsCovered,LocPeril,LocCurrency,CountryCode,LocDed6All,LocLimit6All,NumberOfStoreys,BuildingHeight,LocDedType6All,LocLimitType6All,OccupancyCode
+1,1,1,Hotel Ronceray Opera,30.049999,-85.470001,5101,1000000,0,0,0,WTC,WTC,EUR,DZ,10000,500000,1,10,0,0,1351
