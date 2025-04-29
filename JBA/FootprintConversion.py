@@ -2,18 +2,43 @@ import rasterio
 import numpy as np
 import pandas as pd
 import csv
-from pathlib import PurePath,PurePosixPath
+from pathlib import PurePath,PurePosixPath, Path
 import sys
 from tqdm import tqdm
+import argparse
 
-working_folder = 'VulnerabilityLibrary'
-raster_filepath = './jba_footprints/PH_TW_20240724_Typhoon_Gaemi_FLRF_U_RD_30m_4326.tif'
-oasis_footprint_filepath = './global_flooding_variants/model_data/footprint-U.csv'
-area_peril_dict_filepath = './global_flooding_variants/keys_data/areaperil_dict-U.csv'
+parser = argparse.ArgumentParser(description='Extract model footprints from JBA raster `.tif` files.')
+parser.add_argument('-r', '--rasterfile', required=True, help='Path to `.tif` raster file')
+parser.add_argument('-w', '--workingfolder', help='Path to working folder')
+parser.add_argument('-f', '--fooprintpath', default='model_data/footprint.csv',
+                    help='Relative path to footprint file.')
+parser.add_argument('-a', '--areaperilpath', default='keys_data/areaperil_dict.csv',
+                    help='Relative path to area peril file.')
+parser.add_argument('-i', '--intensity-input', default='./intensity_bins_input.csv',
+                    help='Path to intensity bins input file')
+parser.add_argument('-mi', '--max-intensity', default=600,
+                    help='Max intensity bin value')
+parser.add_argument('--intensity-unit', default='flood_depth_centimetres',
+                    help='Units for intensity bins')
+parser.add_argument('--scale', default=1, help='Scale the intensity. Useful for converting footprint units.')
+
+args = vars(parser.parse_args())
+
+raster_filepath = Path(args.get('rasterfile'))
+working_folder = args.get('working_folder')
+if working_folder is None:
+    working_folder = raster_filepath.parent
+else:
+    working_folder = Path(working_folder)
+
+oasis_footprint_filepath = working_folder / args.get('fooprintpath')
+area_peril_dict_filepath = working_folder / args.get('areaperilpath')
+int_input_path = args.get('intensity_input')
 oasis_filepaths = [area_peril_dict_filepath, oasis_footprint_filepath]
 oasis_fieldnames = [["area_peril_id","longitude","latitude"], ["event_id","area_peril_id","intensity_bin_id","probability"]]
-int_input_path = 'intensity_bins_input.csv'
-int_dict_path = 'intensity_bin_dict-U.csv'
+max_int_val = args.get('max_intensity')
+int_mes_types = [args.get('intensity_unit')]
+intensity_scaling = float(args.get('scale'))
 
 with rasterio.open(raster_filepath) as image:
 
@@ -32,20 +57,12 @@ print(f'  Longitude - min : {min_long:.4f} max : {max_long:.4f}')
 print(f'  Height {no_height_pixels}px')
 print(f'  Width {no_width_pixels}px')
 
-def init_run(working_folder):
-    model_path = PurePath(__file__)
-    parent = model_path.parents
-    for each in parent:
-        if PurePosixPath(each).name == working_folder:
-            path_stem = each
-    return path_stem
-
-def init_int_bins(path_stem, max_int_val):
+def init_int_bins(max_int_val):
     # create three lists for lower bound, upper bound and mid point point values of intensity bins
     int_bin_vals = []
     int_bins = []
     int_mp_vals = []
-    with open(PurePath.joinpath(path_stem, int_input_path)) as bins_file:
+    with open(int_input_path) as bins_file:
         # Read in bins data from opened file
         for i, line in enumerate (bins_file):
             line = line.strip()
@@ -110,6 +127,8 @@ def create_footprint_and_areaperil_dict(int_bins):
             if intensity > 6:
                 intensity = 6
 
+            intensity *= intensity_scaling
+
             areaperil_id += 1
 
             bin_from_differences = intensity - int_bins['bin_from']
@@ -124,6 +143,10 @@ def create_footprint_and_areaperil_dict(int_bins):
 
 def create_files(filepaths, fieldnames, generator):
 
+    # Make directories
+    for path in filepaths:
+        path.parent.mkdir(parents=True, exist_ok=True)
+
     with open(filepaths[0], mode='w', newline='') as areaperil_dict, open(filepaths[1], mode='w', newline='') as footprint:
 
         writer1 = csv.DictWriter(areaperil_dict, fieldnames[0])
@@ -136,12 +159,9 @@ def create_files(filepaths, fieldnames, generator):
             writer1.writerow(row[0])
             writer2.writerow(row[1])
 
-def main(working_folder = 'VulnerabilityLibrary', int_mes_types = ['flood_depth_metres'], max_int_val = 6):
-
-    path_stem = init_run(working_folder)
-
+def main():
     print('Initialising bins..')
-    int_bins, int_mp_vals = init_int_bins(path_stem, max_int_val)
+    int_bins, int_mp_vals = init_int_bins(max_int_val)
     int_bins_dict = create_int_bins(int_bins, int_mp_vals, int_mes_types)
 
     int_bins_df = pd.DataFrame(int_bins_dict)
