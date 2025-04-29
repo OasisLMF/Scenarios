@@ -20,7 +20,7 @@ parser.add_argument('-mi', '--max-intensity', default=600,
                     help='Max intensity bin value')
 parser.add_argument('--intensity-unit', default='flood_depth_centimetres',
                     help='Units for intensity bins')
-parser.add_argument('--scale', default=1, help='Scale the intensity. Useful for converting footprint units.')
+parser.add_argument('--scale', default=100, help='Scale the intensity. Useful for converting footprint units. Default to 100 (converting meters to centimeters).')
 
 args = vars(parser.parse_args())
 
@@ -33,6 +33,8 @@ else:
 
 oasis_footprint_filepath = working_folder / args.get('fooprintpath')
 area_peril_dict_filepath = working_folder / args.get('areaperilpath')
+print(f'Footprint path: {oasis_footprint_filepath}')
+print(f'Area peril path: {oasis_footprint_filepath}')
 int_input_path = args.get('intensity_input')
 oasis_filepaths = [area_peril_dict_filepath, oasis_footprint_filepath]
 oasis_fieldnames = [["area_peril_id","longitude","latitude"], ["event_id","area_peril_id","intensity_bin_id","probability"]]
