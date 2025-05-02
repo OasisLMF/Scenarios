@@ -1,0 +1,10 @@
+{
+  "rasterfile": "./Philippines-Taiwan/source_data/PH_TW_20240724_Typhoon_Gaemi_FLRF_D_RD_30m_4326.tif",
+  "workingfolder": "./Philippines-Taiwan/",
+  "footprintpath": "FLRF/D/model_data/footprint.csv",
+  "areaperilpath": "FLRF/D/keys_data/areaperil_dict.csv",
+  "intensity_input": "./intensity_bins_input_600_1.csv",
+  "max_intensity": 600,
+  "intensity_unit": "flood_depth_centimetres",
+  "scale": 100
+}

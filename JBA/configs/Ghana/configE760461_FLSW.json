@@ -1,0 +1,10 @@
+{
+  "rasterfile": "./Ghana/source_data/GHA_T1000_R11_E760461/GHA_T1000_R11_E760461_FLSW_U_RD_30m_4326.tif",
+  "workingfolder": "./Ghana/E760461/",
+  "footprintpath": "FLSW/model_data/footprint.csv",
+  "areaperilpath": "FLSW/keys_data/areaperil_dict.csv",
+  "intensity_input": "./intensity_bins_input_600_1.csv",
+  "max_intensity": 600,
+  "intensity_unit": "flood_depth_centimetres",
+  "scale": 100
+}

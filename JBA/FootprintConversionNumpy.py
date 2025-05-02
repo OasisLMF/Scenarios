@@ -36,7 +36,7 @@ if config is not None:
 args.update(config)
 
 raster_filepath = Path(args.get('rasterfile'))
-working_folder = args.get('working_folder')
+working_folder = args.get('workingfolder')
 if working_folder is None:
     working_folder = raster_filepath.parent
 else:

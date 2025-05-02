@@ -1,0 +1,10 @@
+{
+  "rasterfile": "./Nepal/source_data/NPL_T1000_R05_E505423/NPL_T1000_R05_E505423_FLSW_U_RD_30m_4326.tif",
+  "workingfolder": "./Nepal/E505423/",
+  "footprintpath": "FLSW/model_data/footprint.csv",
+  "areaperilpath": "FLSW/keys_data/areaperil_dict.csv",
+  "intensity_input": "./intensity_bins_input_600_1.csv",
+  "max_intensity": 600,
+  "intensity_unit": "flood_depth_centimetres",
+  "scale": 100
+}
