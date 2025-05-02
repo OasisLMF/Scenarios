@@ -6,11 +6,14 @@ from pathlib import PurePath,PurePosixPath, Path
 import sys
 from tqdm import tqdm
 import argparse
+import json
+
+import ipdb
 
 parser = argparse.ArgumentParser(description='Extract model footprints from JBA raster `.tif` files.')
-parser.add_argument('-r', '--rasterfile', required=True, help='Path to `.tif` raster file')
+parser.add_argument('-r', '--rasterfile', help='Path to `.tif` raster file')
 parser.add_argument('-w', '--workingfolder', help='Path to working folder')
-parser.add_argument('-f', '--fooprintpath', default='model_data/footprint.csv',
+parser.add_argument('-f', '--footprintpath', default='model_data/footprint.csv',
                     help='Relative path to footprint file.')
 parser.add_argument('-a', '--areaperilpath', default='keys_data/areaperil_dict.csv',
                     help='Relative path to area peril file.')
@@ -21,8 +24,16 @@ parser.add_argument('-mi', '--max-intensity', default=600,
 parser.add_argument('--intensity-unit', default='flood_depth_centimetres',
                     help='Units for intensity bins')
 parser.add_argument('--scale', default=100, help='Scale the intensity. Useful for converting footprint units. Default to 100 (converting meters to centimeters).')
+parser.add_argument('-c', '--config', help="Path to config file", type=Path)
 
 args = vars(parser.parse_args())
+
+config = args.pop('config')
+if config is not None:
+    with open(config, 'r') as f:
+        config = json.load(f)
+
+args.update(config)
 
 raster_filepath = Path(args.get('rasterfile'))
 working_folder = args.get('working_folder')
@@ -31,13 +42,9 @@ if working_folder is None:
 else:
     working_folder = Path(working_folder)
 
-oasis_footprint_filepath = working_folder / args.get('fooprintpath')
+oasis_footprint_filepath = working_folder / args.get('footprintpath')
 area_peril_dict_filepath = working_folder / args.get('areaperilpath')
-print(f'Footprint path: {oasis_footprint_filepath}')
-print(f'Area peril path: {oasis_footprint_filepath}')
 int_input_path = args.get('intensity_input')
-oasis_filepaths = [area_peril_dict_filepath, oasis_footprint_filepath]
-oasis_fieldnames = [["area_peril_id","longitude","latitude"], ["event_id","area_peril_id","intensity_bin_id","probability"]]
 max_int_val = args.get('max_intensity')
 int_mes_types = [args.get('intensity_unit')]
 intensity_scaling = float(args.get('scale'))
