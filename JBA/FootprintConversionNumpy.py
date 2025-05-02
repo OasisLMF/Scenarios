@@ -127,30 +127,59 @@ def create_int_bins(int_bins, int_mp_vals, int_mes_types):
                 index_num += 1
                 yield int_bin_dict
 
+def generate_poisition_array(min_pos, max_pos, no_pixels):
+    # Creates longitude and latitude grids based on max positions and the number of pixels.
+    per_pixel = (max_pos - min_pos) / no_pixels
+    return np.round(np.arange(min_pos + 0.5*per_pixel, max_pos, per_pixel), 6)
+
+
 def main():
     int_bins = init_bins(max_int_val)
-
     footprint = raster
+
 
     # Filter low vals
     footprint = np.where(footprint < -3e28, 0, footprint)
 
-    # TODO :
-    # - Create lat long grid
-    # - Remove the zero values from the grids
-    #   - When 0 values are filtered, zero bin no longer required
+    # Latitude and Longitude arrays
+    print("Generating lat longs")
+    latitude = generate_poisition_array(min_lat, max_lat, no_height_pixels)[::-1] # reverse
+    longitude = generate_poisition_array(min_long, max_long, no_width_pixels)
 
+    print("Filtering footprint")
+    nonzero_ids = np.nonzero(footprint)
+    footprint = footprint[nonzero_ids]
+    footprint *= intensity_scaling
+
+    print("Creating bins")
     # Make bins
     # Note right = False means bins[i-1] <= x < bins[i]
-    footprint_bins = np.digitize(footprint, int_bins, right=False)
+    # zero bin no longer required but +1 to all bins to include it
+    # > max_int_val will have a bin index len(int_bins)
+    footprint_bins = np.digitize(footprint, int_bins, right=False) + 1
 
-    # TODO
-    # - Anything > max_int_val will have a bin index len(int_bins) - handle this case
-    # - Extract area peril dict
-    # - save footprint + areaperil dict
+    print("Saving...")
+    area_peril_ids = range(1, len(footprint_bins) + 1)
 
-    breakpoint()
+    area_peril_df = pd.DataFrame(data={
+        'area_peril_id': area_peril_ids,
+        'latitude': latitude[nonzero_ids[0]],
+        'longitude': longitude[nonzero_ids[1]],
+    })
+
+    area_peril_dict_filepath.parent.mkdir(parents=True, exist_ok=True)
+    area_peril_df.to_csv(area_peril_dict_filepath, index=False)
+    print(f"Saved area peril file: {area_peril_dict_filepath}")
+
+    footprint_df = pd.DataFrame(data={
+        'event_id': 1,
+        'area_peril_id': area_peril_ids,
+        'intensity_bin_id': footprint_bins,
+        'probability': 1
+    })
+
+    oasis_footprint_filepath.parent.mkdir(parents=True, exist_ok=True)
+    footprint_df.to_csv(oasis_footprint_filepath, index=False)
+    print(f"Saved footprint file: {oasis_footprint_filepath}")
 
 main()
-
-
