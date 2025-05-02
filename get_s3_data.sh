@@ -10,3 +10,7 @@ aws s3 cp s3://oasislmf-scenarios/JBA/Nepal/E505423/FLRF/keys_data/areaperil_dic
 aws s3 cp s3://oasislmf-scenarios/JBA/Nepal/E151185/FLRF/model_data/footprint.csv ./JBA/Nepal/E151185/FLRF/model_data/footprint.csv
 aws s3 cp s3://oasislmf-scenarios/JBA/Nepal/E151185/FLRF/keys_data/areaperil_dict.csv ./JBA/Nepal/E151185/FLRF/keys_data/areaperil_dict.csv
 aws s3 cp s3://oasislmf-scenarios/JBA/Nepal/E432557/FLRF/keys_data/areaperil_dict.csv ./JBA/Nepal/E432557/FLRF/keys_data/areaperil_dict.csv
+aws s3 cp s3://oasislmf-scenarios/JBA/Philippines-Taiwan/FLRF/U/model_data/footprint.csv ./JBA/Philippines-Taiwan/FLRF/U/model_data/footprint.csv
+aws s3 cp s3://oasislmf-scenarios/JBA/Philippines-Taiwan/FLRF/U/keys_data/areaperil_dict.csv ./JBA/Philippines-Taiwan/FLRF/U/keys_data/areaperil_dict.csv
+aws s3 cp s3://oasislmf-scenarios/JBA/Philippines-Taiwan/FLRF/D/model_data/footprint.csv ./JBA/Philippines-Taiwan/FLRF/D/model_data/footprint.csv
+aws s3 cp s3://oasislmf-scenarios/JBA/Philippines-Taiwan/FLRF/D/keys_data/areaperil_dict.csv ./JBA/Philippines-Taiwan/FLRF/D/keys_data/areaperil_dict.csv
