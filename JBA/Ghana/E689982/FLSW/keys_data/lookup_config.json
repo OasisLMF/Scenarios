@@ -1,0 +1,59 @@
+{
+    "model": {
+        "supplier_id": "JBA",
+        "model_id": "Ghana-E689982-FLSW",
+        "model_version": "1.1.0"
+    },
+    "builtin_lookup_type": "new_lookup",
+    "keys_data_path": "./",
+    "step_definition": {
+        "peril":{
+            "type": "rtree",
+            "columns": ["latitude", "longitude"],
+            "parameters": {
+                "file_path": "%%KEYS_DATA_PATH%%/areaperil_dict.parquet",
+                "file_type": "parquet",
+                "id_columns": ["area_peril_id"],
+                "nearest_neighbor_min_distance": 1000
+            }
+        },
+        "split_loc_perils_covered":{
+            "type": "split_loc_perils_covered" ,
+            "columns": ["locperilscovered"],
+            "parameters": {
+                "model_perils_covered": ["OSF"]
+            }
+        },
+        "create_coverage_type": {
+            "type": "simple_pivot",
+            "parameters": {
+                "pivots": [
+                    {"new_cols": {"coverage_type": 1}}
+                ]
+            }
+        },
+        "country": {
+            "type": "merge",
+            "columns": ["peril_id", "coverage_type", "CountryCode"],
+            "parameters": {"file_path": "%%KEYS_DATA_PATH%%/country_dict.csv",
+                           "id_columns": ["continent_id"]
+                          }
+        },
+        "occupancy": {
+            "type": "merge",
+            "columns": ["peril_id", "coverage_type", "OccupancyCode"],
+            "parameters": {"file_path": "%%KEYS_DATA_PATH%%/occupancy_dict.csv",
+                           "id_columns": ["occupancy_id"]
+                          }
+        },
+        "vulnerability": {
+            "type": "merge",
+            "columns": ["peril_id", "coverage_type", "continent_id", "occupancy_id"],
+            "parameters": {"file_path": "%%KEYS_DATA_PATH%%/vulnerability_dict.csv",
+                           "id_columns": ["vulnerability_id"]
+                          }
+        }
+
+    },
+    "strategy": ["split_loc_perils_covered", "peril", "create_coverage_type", "country", "occupancy", "vulnerability"]
+}
