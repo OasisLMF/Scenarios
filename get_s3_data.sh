@@ -16,3 +16,11 @@ aws s3 cp s3://oasislmf-scenarios/JBA/Philippines-Taiwan/FLRF/D/model_data/footp
 aws s3 cp s3://oasislmf-scenarios/JBA/Philippines-Taiwan/FLRF/D/keys_data/areaperil_dict.csv ./JBA/Philippines-Taiwan/FLRF/D/keys_data/areaperil_dict.csv
 aws s3 cp s3://oasislmf-scenarios/JBA/Ghana/E635900/FLRF/keys_data/areaperil_dict.parquet ./JBA/Ghana/E635900/FLRF/keys_data/areaperil_dict.parquet
 aws s3 cp s3://oasislmf-scenarios/JBA/Ghana/E760461/FLRF/keys_data/areaperil_dict.parquet ./JBA/Ghana/E760461/FLRF/keys_data/areaperil_dict.parquet
+aws s3 cp s3://oasislmf-scenarios/JBA/Ghana/E635900/combined/model_data/footprint.csv ./JBA/Ghana/E635900/combined/model_data/footprint.csv
+aws s3 cp s3://oasislmf-scenarios/JBA/Ghana/E635900/combined/keys_data/areaperil_dict.csv ./JBA/Ghana/E635900/combined/keys_data/areaperil_dict.csv
+aws s3 cp s3://oasislmf-scenarios/JBA/Ghana/E635900/combined/keys_data/areaperil_dict.parquet ./JBA/Ghana/E635900/combined/keys_data/areaperil_dict.parquet
+aws s3 cp s3://oasislmf-scenarios/JBA/Ghana/E760461/combined/model_data/footprint.csv ./JBA/Ghana/E760461/combined/model_data/footprint.csv
+aws s3 cp s3://oasislmf-scenarios/JBA/Ghana/E760461/combined/keys_data/areaperil_dict.csv ./JBA/Ghana/E760461/combined/keys_data/areaperil_dict.csv
+aws s3 cp s3://oasislmf-scenarios/JBA/Ghana/E760461/combined/keys_data/areaperil_dict.parquet ./JBA/Ghana/E760461/combined/keys_data/areaperil_dict.parquet
+aws s3 cp s3://oasislmf-scenarios/JBA/Ghana/E689982/combined/model_data/footprint.csv ./JBA/Ghana/E689982/combined/model_data/footprint.csv
+aws s3 cp s3://oasislmf-scenarios/JBA/Ghana/E689982/combined/keys_data/areaperil_dict.csv ./JBA/Ghana/E689982/combined/keys_data/areaperil_dict.csv
