@@ -24,3 +24,10 @@ aws s3 cp s3://oasislmf-scenarios/JBA/Ghana/E760461/combined/keys_data/areaperil
 aws s3 cp s3://oasislmf-scenarios/JBA/Ghana/E760461/combined/keys_data/areaperil_dict.parquet ./JBA/Ghana/E760461/combined/keys_data/areaperil_dict.parquet
 aws s3 cp s3://oasislmf-scenarios/JBA/Ghana/E689982/combined/model_data/footprint.csv ./JBA/Ghana/E689982/combined/model_data/footprint.csv
 aws s3 cp s3://oasislmf-scenarios/JBA/Ghana/E689982/combined/keys_data/areaperil_dict.csv ./JBA/Ghana/E689982/combined/keys_data/areaperil_dict.csv
+aws s3 cp s3://oasislmf-scenarios/Nepal/E505423/combined/model_data/footprint.csv ./Nepal/E505423/combined/model_data/footprint.csv
+aws s3 cp s3://oasislmf-scenarios/Nepal/E505423/combined/keys_data/areaperil_dict.csv ./Nepal/E505423/combined/keys_data/areaperil_dict.csv
+aws s3 cp s3://oasislmf-scenarios/Nepal/E505423/combined/keys_data/areaperil_dict.parquet ./Nepal/E505423/combined/keys_data/areaperil_dict.parquet
+aws s3 cp s3://oasislmf-scenarios/Nepal/E151185/combined/model_data/footprint.csv ./Nepal/E151185/combined/model_data/footprint.csv
+aws s3 cp s3://oasislmf-scenarios/Nepal/E151185/combined/keys_data/areaperil_dict.csv ./Nepal/E151185/combined/keys_data/areaperil_dict.csv
+aws s3 cp s3://oasislmf-scenarios/Nepal/E151185/combined/keys_data/areaperil_dict.parquet ./Nepal/E151185/combined/keys_data/areaperil_dict.parquet
+aws s3 cp s3://oasislmf-scenarios/Nepal/E432557/combined/keys_data/areaperil_dict.csv ./Nepal/E432557/combined/keys_data/areaperil_dict.csv
