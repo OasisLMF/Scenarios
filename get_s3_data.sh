@@ -31,3 +31,8 @@ aws s3 cp s3://oasislmf-scenarios/Nepal/E151185/combined/model_data/footprint.cs
 aws s3 cp s3://oasislmf-scenarios/Nepal/E151185/combined/keys_data/areaperil_dict.csv ./Nepal/E151185/combined/keys_data/areaperil_dict.csv
 aws s3 cp s3://oasislmf-scenarios/Nepal/E151185/combined/keys_data/areaperil_dict.parquet ./Nepal/E151185/combined/keys_data/areaperil_dict.parquet
 aws s3 cp s3://oasislmf-scenarios/Nepal/E432557/combined/keys_data/areaperil_dict.csv ./Nepal/E432557/combined/keys_data/areaperil_dict.csv
+aws s3 cp s3://oasislmf-scenarios/JBA/Philippines-Taiwan/combined-undefended/model_data/footprint.csv ./JBA/Philippines-Taiwan/combined-undefended/model_data/footprint.csv
+aws s3 cp s3://oasislmf-scenarios/JBA/Philippines-Taiwan/combined-undefended/keys_data/areaperil_dict.csv ./JBA/Philippines-Taiwan/combined-undefended/keys_data/areaperil_dict.csv
+aws s3 cp s3://oasislmf-scenarios/JBA/Philippines-Taiwan/combined-undefended/keys_data/areaperil_dict.parquet ./JBA/Philippines-Taiwan/combined-undefended/keys_data/areaperil_dict.parquet
+aws s3 cp s3://oasislmf-scenarios/JBA/Philippines-Taiwan/combined-defended/model_data/footprint.csv ./JBA/Philippines-Taiwan/combined-defended/model_data/footprint.csv
+aws s3 cp s3://oasislmf-scenarios/JBA/Philippines-Taiwan/combined-defended/keys_data/areaperil_dict.csv ./JBA/Philippines-Taiwan/combined-defended/keys_data/areaperil_dict.csv
