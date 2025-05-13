@@ -1,0 +1,25 @@
+{
+    "version": "3.2.9",
+    "description": "Impact Forecasting European Windstorm Model\n\nEvent Response Oasis Package\n\n\nImpact Forecasting European Windstorm Event Response is a tool to address in-season scenario footprints when a significant storm hits Europe.\n\nThis package contains data for two recent storms which hit Europe: a powerful storm named Ciarán that hit Western Europe on November 1-2, and a low-pressure system named Domingos that affected parts of Western Europe on November 4-7.\n\nHazard footprints are based on pan-European measured station data provided by the UK Met Office. To account for the uncertainty of the wind field, three different footprints are created for each event. The number of nearby stations used to interpolate the measured point data into the hazard grid is set to 15 (Footprint 1), 30 (Footprint 2) and 40 (Footprint 3), resulting in progressive smoothing of the wind field.",
+    "model_settings":{
+	 "event_set":{
+            "name": "Event Set",
+            "desc": "Event Set selection",
+            "default": "cieren",
+            "options":[
+                {"id":"ciaran", "desc": "Storm Ciaran Nov 2023", "number_of_events": 3},
+                {"id":"domingos", "desc": "Storm Domingos Nov 2023", "number_of_events": 3}
+            ]
+	 },
+        "event_occurrence_id":{
+            "name": "Occurrence Set",
+            "desc": "Occurrence selection",
+            "default": "",
+            "options":[]
+        }
+    },
+    "lookup_settings":{},
+    "data_settings": {
+        "group_fields": ["PortNumber", "AccNumber", "LocNumber"]
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "analysis_settings_json": "analysis_settings.json",
+    "lookup_data_dir": "keys_data/1.0.0",
+    "lookup_module_path": "keys_data/1.0.0/key_server",
+    "model_data_dir": "model_data/1.0.0",
+    "model_settings_json": "meta-data/model_settings.json",
+    "model_version_csv": "model_data/1.0.0/ModelVersion.csv",
+    "oed_location_csv": "tests/MAEQ_100_oasis.csv",
+    "oed_account_csv": "tests/MAEQ_acc.csv"
+}
