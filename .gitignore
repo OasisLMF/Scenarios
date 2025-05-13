@@ -1,3 +1,10 @@
+# python
+*pyc
+env/
+
+# oasis
+runs/
+
 # Large files
 JBA/Philippines-Taiwan/FLRF/U/keys_data/areaperil_dict.csv
 JBA/Philippines-Taiwan/FLRF/D/keys_data/areaperil_dict.csv
