@@ -1,0 +1,2 @@
+peril_id,peril_name,peril_code,peril_description,intensity_metric
+1,EQ,QEQ,Earthquake ,spectral acceleration (SA)

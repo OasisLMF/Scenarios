@@ -1,0 +1,23 @@
+{
+    "version": "3.2.9",
+    "description": "Impact Forecasting Morocco Earthquake Model\n\nEvent Response Oasis Package\n\n\nThe Impact Forecasting Morocco Earthquake Event Response Model is a part of the regional Maghreb earthquake model and it is developed in collaboration with Aon Natural Hazard Centre in Pretoria.\n\nA magnitude-6.8 earthquake occurred in the Moroccan High Atlas Mountain range near Oukaïmedene on September 8. Earthquakes of this size are rare but not unexpected in the region. As of September 11, the earthquake claimed approximately 2,500 fatalities and injuries and caused notable material damage across the affected area, however, unlikely to be a major event for the insurance industry regarding low insurance penetration.\n\nThis model provides three footprints for the event, one based on the United States Geological Survey (USGS) shakemap and two based on Global Earthquake Model (GEM) fault parameters. Each is contained in a separate event set. By use of this model, clients are afforded the capability to quantify earthquake loss potential in Morocco from a deterministic point of view.",
+    "model_settings":{
+	 "event_set":{
+            "name": "Event Set",
+            "desc": "Event Set selection",
+            "default": "",
+            "options":[
+            ]
+	 },
+        "event_occurrence_id":{
+            "name": "Occurrence Set",
+            "desc": "Occurrence selection",
+            "default": "",
+            "options":[]
+        }
+    },
+    "lookup_settings":{},
+    "data_settings": {
+        "group_fields": ["PortNumber", "AccNumber", "LocNumber"]
+    }
+}

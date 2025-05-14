@@ -1,0 +1,4 @@
+event_id,fault_name,date,time,f_lon0,f_lat0,f_azi,f_dip,r_x,r_y,r_z,r_l,r_w,r_mag,r_epsln,e_type,e_region,r_nu,demand surge,e_nseg,geographicsregion,demandsurge
+1,USGS_footprint,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,4096,1
+2,GEM_footprint_01,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,4096,1
+3,GEM_footprint_02,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,4096,1

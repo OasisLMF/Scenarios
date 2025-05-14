@@ -1,0 +1,42 @@
+CountryISO,HierarchyOrder,PrecisionName
+40,1,Postal Code
+40,2,Cresta Zone
+56,1,Postal Code
+56,2,Cresta Zone
+203,1,Postal Code
+203,2,Municipality
+203,3,State
+203,4,Cresta Zone
+208,1,Postal Code
+208,2,Cresta Zone
+246,1,Postal Code
+246,2,Municipality
+246,3,Cresta Zone
+250,1,Postal Code
+250,2,Cresta Zone
+276,1,Postal Code
+276,2,Cresta Zone
+372,1,Municipality
+372,2,Cresta Zone
+442,1,Postal Code
+442,2,Cresta Zone
+528,1,Postal Code
+528,2,Cresta Zone
+578,1,Postal Code
+578,2,Municipality
+578,3,Cresta Zone
+616,1,Postal Code
+616,2,District
+616,3,Municipality
+616,4,State
+616,5,Cresta Zone
+703,1,Postal Code
+703,2,District
+703,3,Municipality
+703,4,State
+703,5,Cresta Zone
+752,1,Postal Code
+752,2,Municipality
+752,3,Cresta Zone
+826,1,Postal Code
+826,2,Cresta Zone

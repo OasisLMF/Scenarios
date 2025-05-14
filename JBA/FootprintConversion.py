@@ -2,18 +2,52 @@ import rasterio
 import numpy as np
 import pandas as pd
 import csv
-from pathlib import PurePath,PurePosixPath
+from pathlib import PurePath,PurePosixPath, Path
 import sys
 from tqdm import tqdm
+import argparse
+import json
 
-working_folder = 'VulnerabilityLibrary'
-raster_filepath = './jba_footprints/PH_TW_20240724_Typhoon_Gaemi_FLRF_U_RD_30m_4326.tif'
-oasis_footprint_filepath = './global_flooding_variants/model_data/footprint-U.csv'
-area_peril_dict_filepath = './global_flooding_variants/keys_data/areaperil_dict-U.csv'
-oasis_filepaths = [area_peril_dict_filepath, oasis_footprint_filepath]
-oasis_fieldnames = [["area_peril_id","longitude","latitude"], ["event_id","area_peril_id","intensity_bin_id","probability"]]
-int_input_path = 'intensity_bins_input.csv'
-int_dict_path = 'intensity_bin_dict-U.csv'
+import ipdb
+
+parser = argparse.ArgumentParser(description='Extract model footprints from JBA raster `.tif` files.')
+parser.add_argument('-r', '--rasterfile', help='Path to `.tif` raster file')
+parser.add_argument('-w', '--workingfolder', help='Path to working folder')
+parser.add_argument('-f', '--footprintpath', default='model_data/footprint.csv',
+                    help='Relative path to footprint file.')
+parser.add_argument('-a', '--areaperilpath', default='keys_data/areaperil_dict.csv',
+                    help='Relative path to area peril file.')
+parser.add_argument('-i', '--intensity-input', default='./intensity_bins_input.csv',
+                    help='Path to intensity bins input file')
+parser.add_argument('-mi', '--max-intensity', default=600,
+                    help='Max intensity bin value')
+parser.add_argument('--intensity-unit', default='flood_depth_centimetres',
+                    help='Units for intensity bins')
+parser.add_argument('--scale', default=100, help='Scale the intensity. Useful for converting footprint units. Default to 100 (converting meters to centimeters).')
+parser.add_argument('-c', '--config', help="Path to config file", type=Path)
+
+args = vars(parser.parse_args())
+
+config = args.pop('config')
+if config is not None:
+    with open(config, 'r') as f:
+        config = json.load(f)
+
+args.update(config)
+
+raster_filepath = Path(args.get('rasterfile'))
+working_folder = args.get('workingfolder')
+if working_folder is None:
+    working_folder = raster_filepath.parent
+else:
+    working_folder = Path(working_folder)
+
+oasis_footprint_filepath = working_folder / args.get('footprintpath')
+area_peril_dict_filepath = working_folder / args.get('areaperilpath')
+int_input_path = args.get('intensity_input')
+max_int_val = args.get('max_intensity')
+int_mes_types = [args.get('intensity_unit')]
+intensity_scaling = float(args.get('scale'))
 
 with rasterio.open(raster_filepath) as image:
 
@@ -32,20 +66,12 @@ print(f'  Longitude - min : {min_long:.4f} max : {max_long:.4f}')
 print(f'  Height {no_height_pixels}px')
 print(f'  Width {no_width_pixels}px')
 
-def init_run(working_folder):
-    model_path = PurePath(__file__)
-    parent = model_path.parents
-    for each in parent:
-        if PurePosixPath(each).name == working_folder:
-            path_stem = each
-    return path_stem
-
-def init_int_bins(path_stem, max_int_val):
+def init_int_bins(max_int_val):
     # create three lists for lower bound, upper bound and mid point point values of intensity bins
     int_bin_vals = []
     int_bins = []
     int_mp_vals = []
-    with open(PurePath.joinpath(path_stem, int_input_path)) as bins_file:
+    with open(int_input_path) as bins_file:
         # Read in bins data from opened file
         for i, line in enumerate (bins_file):
             line = line.strip()
@@ -72,6 +98,21 @@ def init_int_bins(path_stem, max_int_val):
         sys.exit()
     return int_bins, int_mp_vals
 
+def init_bins(max_int_val):
+    int_bin_vals = []
+    with open(int_input_path) as bins_file:
+        # Read in bins data from opened file
+        for i, line in enumerate (bins_file):
+            line = line.strip()
+            if i and float(line) <= max_int_val:
+                int_bin_vals.append(float(line))
+
+    if sorted(int_bin_vals) != int_bin_vals:
+        raise Exception('input intensity bins must be arranged in order of size...')
+
+    return int_bin_vals
+
+
 def create_int_bins(int_bins, int_mp_vals, int_mes_types):
     # create function to find unique intensity measurement types
     index_num = 1
@@ -86,70 +127,59 @@ def create_int_bins(int_bins, int_mp_vals, int_mes_types):
                 index_num += 1
                 yield int_bin_dict
 
-def create_footprint_and_areaperil_dict(int_bins):
+def generate_poisition_array(min_pos, max_pos, no_pixels):
+    # Creates longitude and latitude grids based on max positions and the number of pixels.
+    per_pixel = (max_pos - min_pos) / no_pixels
+    return np.round(np.arange(min_pos + 0.5*per_pixel, max_pos, per_pixel), 6)
 
-    width_per_pixel = (max_long - min_long) / no_width_pixels
-    height_per_pixel = (max_lat - min_lat) / no_height_pixels
 
-    lat_incr = 0
-    areaperil_id = 0
+def main():
+    int_bins = init_bins(max_int_val)
+    footprint = raster
 
-    for row in tqdm(raster, desc='footprint_area_peril_gen'):
 
-        long_incr = 0
-        latitude = round(max_lat - (height_per_pixel * (0.5 + lat_incr)), 6)
+    # Filter low vals
+    footprint = np.where(footprint < -3e28, 0, footprint)
 
-        for intensity in row:
+    # Latitude and Longitude arrays
+    print("Generating lat longs")
+    latitude = generate_poisition_array(min_lat, max_lat, no_height_pixels)[::-1] # reverse
+    longitude = generate_poisition_array(min_long, max_long, no_width_pixels)
 
-            longitude = round(width_per_pixel * (0.5 + long_incr) + min_long, 6)
-            long_incr += 1
+    print("Filtering footprint")
+    nonzero_ids = np.nonzero(footprint)
+    footprint = footprint[nonzero_ids]
+    footprint *= intensity_scaling
 
-            if intensity < -3e+38:
-                continue
+    print("Creating bins")
+    # Make bins
+    # Note right = False means bins[i-1] <= x < bins[i]
+    # zero bin no longer required but +1 to all bins to include it
+    # > max_int_val will have a bin index len(int_bins)
+    footprint_bins = np.digitize(footprint, int_bins, right=False) + 1
 
-            if intensity > 6:
-                intensity = 6
+    print("Saving...")
+    area_peril_ids = range(1, len(footprint_bins) + 1)
 
-            areaperil_id += 1
+    area_peril_df = pd.DataFrame(data={
+        'area_peril_id': area_peril_ids,
+        'latitude': latitude[nonzero_ids[0]],
+        'longitude': longitude[nonzero_ids[1]],
+    })
 
-            bin_from_differences = intensity - int_bins['bin_from']
-            bin_to_differences = int_bins['bin_to'] - intensity
-            differences_multiplied = bin_to_differences * bin_from_differences
+    area_peril_dict_filepath.parent.mkdir(parents=True, exist_ok=True)
+    area_peril_df.to_csv(area_peril_dict_filepath, index=False)
+    print(f"Saved area peril file: {area_peril_dict_filepath}")
 
-            intensity_bin_id = int_bins['bin_index'][differences_multiplied.idxmax()] #Edge Case for when intensity value is equal to a bin edge value is currently being assigned the lower intensity bin_id
-            footprint_row = { "event_id": 1, "area_peril_id": areaperil_id, "intensity_bin_id": intensity_bin_id, "probability": 1}
-            areaperil_dict = { "area_peril_id": areaperil_id, "longitude": longitude, "latitude": latitude}
-            yield (areaperil_dict, footprint_row)
-        lat_incr += 1
+    footprint_df = pd.DataFrame(data={
+        'event_id': 1,
+        'area_peril_id': area_peril_ids,
+        'intensity_bin_id': footprint_bins,
+        'probability': 1
+    })
 
-def create_files(filepaths, fieldnames, generator):
-
-    with open(filepaths[0], mode='w', newline='') as areaperil_dict, open(filepaths[1], mode='w', newline='') as footprint:
-
-        writer1 = csv.DictWriter(areaperil_dict, fieldnames[0])
-        writer2 = csv.DictWriter(footprint, fieldnames[1])
-
-        writer1.writeheader()
-        writer2.writeheader()
-
-        for row in generator:
-            writer1.writerow(row[0])
-            writer2.writerow(row[1])
-
-def main(working_folder = 'VulnerabilityLibrary', int_mes_types = ['flood_depth_metres'], max_int_val = 6):
-
-    path_stem = init_run(working_folder)
-
-    print('Initialising bins..')
-    int_bins, int_mp_vals = init_int_bins(path_stem, max_int_val)
-    int_bins_dict = create_int_bins(int_bins, int_mp_vals, int_mes_types)
-
-    int_bins_df = pd.DataFrame(int_bins_dict)
-
-    print('Creating footprint & area peril generator...')
-    footprint_area_peril_gen = create_footprint_and_areaperil_dict(int_bins_df)
-
-    print('Saving files...')
-    create_files(oasis_filepaths, oasis_fieldnames, footprint_area_peril_gen)
+    oasis_footprint_filepath.parent.mkdir(parents=True, exist_ok=True)
+    footprint_df.to_csv(oasis_footprint_filepath, index=False)
+    print(f"Saved footprint file: {oasis_footprint_filepath}")
 
 main()

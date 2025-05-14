@@ -1,0 +1,217 @@
+country,country_id,CountryCode,continent,continent_id
+Algeria,1,DZ,Africa,1
+Angola,2,AO,Africa,1
+Benin,3,BJ,Africa,1
+Botswana,4,BW,Africa,1
+Burkina_Faso,5,BF,Africa,1
+Burundi,6,BI,Africa,1
+Cameroon,7,CM,Africa,1
+Cape_Verde,8,CV,Africa,1
+Central_African_Republic,9,CF,Africa,1
+Chad,10,TD,Africa,1
+Comoros,11,KM,Africa,1
+Congo,12,CG,Africa,1
+Democratic_Republic_of_the_Congo,13,CD,Africa,1
+Djibouti,14,DJ,Africa,1
+Egypt,15,EG,Africa,1
+Equatorial_Guinea,16,GQ,Africa,1
+Eritrea,17,ER,Africa,1
+Eswatini,18,SZ,Africa,1
+Ethiopia,19,ET,Africa,1
+Gabon,20,GA,Africa,1
+Gambia,21,GM,Africa,1
+Ghana,22,GH,Africa,1
+Guinea,23,GN,Africa,1
+Guinea_Bissau,24,GW,Africa,1
+Ivory_Coast,25,CI,Africa,1
+Kenya,26,KE,Africa,1
+Lesotho,27,LS,Africa,1
+Liberia,28,LR,Africa,1
+Libya,29,LY,Africa,1
+Madagascar,30,MG,Africa,1
+Malawi,31,MW,Africa,1
+Mali,32,ML,Africa,1
+Mauritania,33,MR,Africa,1
+Mauritius,34,MU,Africa,1
+Morocco,35,MA,Africa,1
+Mozambique,36,MZ,Africa,1
+Namibia,37,NA,Africa,1
+Niger,38,NE,Africa,1
+Rwanda,39,RW,Africa,1
+Sao_Tome_and_Principe,40,ST,Africa,1
+Senegal,41,SN,Africa,1
+Seychelles,42,SC,Africa,1
+Sierra_Leone,43,SL,Africa,1
+Somalia,44,SO,Africa,1
+South_Africa,45,ZA,Africa,1
+South_Sudan,46,SS,Africa,1
+Sudan,47,SD,Africa,1
+Tanzania,48,TZ,Africa,1
+Togo,49,TG,Africa,1
+Tunisia,50,TN,Africa,1
+Uganda,51,UG,Africa,1
+Zambia,52,ZM,Africa,1
+Zimbabwe,53,ZW,Africa,1
+Anguilla,54,AI,Centr&south America,2
+Antigua_and_Barbuda,55,AG,Centr&south America,2
+Aruba,56,AW,Centr&south America,2
+Bahamas,57,BS,Centr&south America,2
+Barbados,58,BB,Centr&south America,2
+Belize,59,BZ,Centr&south America,2
+British_Virgin_Islands,60,VG,Centr&south America,2
+Cayman_Islands,61,KY,Centr&south America,2
+Costa_Rica,62,CR,Centr&south America,2
+Cuba,63,CU,Centr&south America,2
+Dominica,64,DM,Centr&south America,2
+Dominican_Republic,65,DO,Centr&south America,2
+El_Salvador,66,SV,Centr&south America,2
+Grenada,67,GD,Centr&south America,2
+Guadeloupe,68,GP,Centr&south America,2
+Guatemala,69,GT,Centr&south America,2
+Haiti,70,HT,Centr&south America,2
+Honduras,71,HN,Centr&south America,2
+Jamaica,72,JM,Centr&south America,2
+Martinique,73,MQ,Centr&south America,2
+Montserrat,74,MS,Centr&south America,2
+Nicaragua,75,NI,Centr&south America,2
+Panama,76,PA,Centr&south America,2
+Puerto_Rico,77,PR,Centr&south America,2
+Saint_Kitts_and_Nevis,78,KN,Centr&south America,2
+Saint_Lucia,79,LC,Centr&south America,2
+Saint_Vincent_and_the_Grenadines,80,V,Centr&south America,2
+Trinidad_and_Tobago,81,TT,Centr&south America,2
+Turks_and_Caicos_Islands,82,TC,Centr&south America,2
+US_Virgin_Islands,83,VI,Centr&south America,2
+Kazakhstan,84,KZ,Asia,3
+Kyrgyzstan,85,KG,Asia,3
+Tajikistan,86,TJ,Asia,3
+Turkmenistan,87,TM,Asia,3
+Uzbekistan,88,UZ,Asia,3
+China,89,CN,Asia,3
+Hong_Kong,90,HK,Asia,3
+Japan,91,JP,Asia,3
+Macao,92,MO,Asia,3
+North_Korea,93,KP,Asia,3
+South_Korea,94,KR,Asia,3
+Taiwan,95,TW,Asia,3
+Albania,96,AL,Europe,4
+Andorra,97,AD,Europe,4
+Austria,98,AT,Europe,4
+Belarus,99,BY,Europe,4
+Belgium,100,BE,Europe,4
+Bosnia_and_Herzegovina,101,BA,Europe,4
+Bulgaria,102,BG,Europe,4
+Croatia,103,HR,Europe,4
+Cyprus,104,CY,Europe,4
+Czechia,105,CZ,Europe,4
+Denmark,106,DK,Europe,4
+Estonia,107,EE,Europe,4
+Finland,108,FI,Europe,4
+France,109,FR,Europe,4
+Germany,110,DE,Europe,4
+Gibraltar,111,GI,Europe,4
+Greece,112,GR,Europe,4
+Hungary,113,HU,Europe,4
+Iceland,114,IS,Europe,4
+Ireland,115,IE,Europe,4
+Isle_of_Man,116,IM,Europe,4
+Italy,117,IT,Europe,4
+Kosovo,118,XK,Europe,4
+Latvia,119,LV,Europe,4
+Liechtenstein,120,LI,Europe,4
+Lithuania,121,LT,Europe,4
+Luxembourg,122,LU,Europe,4
+Malta,123,MT,Europe,4
+Moldova,124,MD,Europe,4
+Monaco,125,MC,Europe,4
+Montenegro,126,ME,Europe,4
+Netherlands,127,NL,Europe,4
+North_Macedonia,128,MK,Europe,4
+Norway,129,NO,Europe,4
+Poland,130,PL,Europe,4
+Portugal,131,PT,Europe,4
+Romania,132,RO,Europe,4
+Serbia,133,RS,Europe,4
+Slovakia,134,SK,Europe,4
+Slovenia,135,SI,Europe,4
+Spain,136,ES,Europe,4
+Sweden,137,SE,Europe,4
+Switzerland,138,CH,Europe,4
+Turkey,139,TR,Europe,4
+Ukraine,140,UA,Europe,4
+United_Kingdom,141,GB,Europe,4
+Armenia,142,AM,Asia,3
+Azerbaijan,143,AZ,Asia,3
+Bahrain,144,BH,Asia,3
+Georgia,145,GE,Asia,3
+Iran,146,IR,Asia,3
+Iraq,147,IQ,Asia,3
+Israel,148,IL,Asia,3
+Jordan,149,JO,Asia,3
+Kuwait,150,KW,Asia,3
+Lebanon,151,LB,Asia,3
+Oman,152,OM,Asia,3
+Palestine,153,PS,Asia,3
+Qatar,154,QA,Asia,3
+Saudi_Arabia,155,SA,Asia,3
+Syria,156,SY,Asia,3
+United_Arab_Emirates,157,AE,Asia,3
+Yemen,158,YE,Asia,3
+Canada,159,CA,North America,5
+Mexico,160,MX,North America,5
+United_States,161,US,North America,5
+Mongolia,162,MN,Asia,3
+Russia,163,RU,Asia,3
+American_Samoa,164,AS,Oceania,6
+Australia,165,AU,Oceania,6
+Cook_Islands,166,CK,Oceania,6
+Fiji,167,FJ,Oceania,6
+Guam,168,GU,Oceania,6
+Kiribati,169,KI,Oceania,6
+Marshall_Islands,170,MH,Oceania,6
+Micronesia,171,FM,Oceania,6
+Nauru,172,NR,Oceania,6
+New_Caledonia,173,NC,Oceania,6
+New_Zealand,174,NZ,Oceania,6
+Niue,175,NU,Oceania,6
+Northern_Mariana_Islands,176,MP,Oceania,6
+Palau,177,PW,Oceania,6
+Papua_New_Guinea,178,PG,Oceania,6
+Samoa,179,WS,Oceania,6
+Solomon_Islands,180,SB,Oceania,6
+Tonga,181,TO,Oceania,6
+Tuvalu,182,TV,Oceania,6
+Vanuatu,183,VU,Oceania,6
+Argentina,184,AR,Centr&south America,2
+Bolivia,185,BO,Centr&south America,2
+Brazil,186,BR,Centr&south America,2
+Chile,187,CL,Centr&south America,2
+Colombia,188,CO,Centr&south America,2
+Ecuador,189,EC,Centr&south America,2
+French_Guiana,190,GF,Centr&south America,2
+Guyana,191,GY,Centr&south America,2
+Paraguay,192,PY,Centr&south America,2
+Peru,193,PE,Centr&south America,2
+Suriname,194,SR,Centr&south America,2
+Uruguay,195,UY,Centr&south America,2
+Venezuela,196,VE,Centr&south America,2
+Afghanistan,197,AF,Asia,3
+Bangladesh,198,BD,Asia,3
+Bhutan,199,BT,Asia,3
+India,200,IN,Asia,3
+Nepal,201,NP,Asia,3
+Pakistan,202,PK,Asia,3
+Sri_Lanka,203,LK,Asia,3
+Brunei,204,BN,Asia,3
+Cambodia,205,KH,Asia,3
+Indonesia,206,ID,Asia,3
+Laos,207,LA,Asia,3
+Malaysia,208,MY,Asia,3
+Myanmar,209,MM,Asia,3
+Philippines,210,PH,Asia,3
+Singapore,211,SG,Asia,3
+Thailand,212,TH,Asia,3
+Timor_Leste,213,TL,Asia,3
+Vietnam,214,VN,Asia,3
+Nigeria,215,NG,Africa,1
+Global,216,GL,Global,7
