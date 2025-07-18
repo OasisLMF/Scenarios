@@ -1,6 +1,6 @@
 {
     "version": "3.2.9",
-    "name": "Moroccan High Atlas EQ, Mw6.8 earthquake September 8 2023."
+    "name": "Moroccan High Atlas EQ, Mw6.8 earthquake September 8 2023.",
     "description": "Impact Forecasting Morocco Earthquake Model - part of the regional Maghreb earthquake model. Three footprints are provided for the event: one based on the United States Geological Survey (USGS) shakemap and two based on Global Earthquake Model (GEM) fault parameters.",
     "model_settings":{
 	 "event_set":{
