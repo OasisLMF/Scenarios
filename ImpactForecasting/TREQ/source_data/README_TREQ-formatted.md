@@ -2,7 +2,7 @@ Impact Forecasting Turkey Earthquake Model
 Event Response Oasis Package
 
 
-On February 6, starting in the early morning hours, a series of strong earthquakes occurred in south Turkey and shook the Turkish-Syrian border region, claiming thousands of fatalities, causing notable material damage in both countries, and affecting millions of people across the region. The main shock was of M7.8.
+On February 6 2023, starting in the early morning hours, a series of strong earthquakes occurred in south Turkey and shook the Turkish-Syrian border region, claiming thousands of fatalities, causing notable material damage in both countries, and affecting millions of people across the region. The main shock was of M7.8.
 
 Impact Forecasting implemented the USGS footprints for 4 significant events of the sequence into an Oasis package ready to be run for potential client loss estimate.
 

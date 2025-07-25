@@ -1,0 +1,23 @@
+{
+    "version": "",
+    "name": "1-in-100 year return period (1% annual probability) flood scenario for Northern Ghana. River and surface water flood combined",
+    "description": "A representative 1-in-100 year return period (1% annual probability) flood on the Black Volta and White Volta, Ghana. River and surface water flood combined. Provided by JBA Risk Management.",
+    "model_settings":{
+	 "event_set":{
+            "name": "",
+            "desc": "",
+            "default": "",
+            
+	 },
+        "event_occurrence_id":{
+            "name": "",
+            "desc": "",
+            "default": "",
+            "options":[]
+        }
+    },
+    "lookup_settings":{},
+    "data_settings": {
+        "group_fields": ["PortNumber", "AccNumber", "LocNumber"]
+    }
+}

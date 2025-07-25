@@ -1,4 +1,6 @@
 {
+    "name": "US Hurricane Michael, October 2018.",
+    "description": "US Hurricane wind footprint for Hurricane Michael, October 11-12 2018. It made landfall near Mexico Beach, Florida as a Category 4 hurricane before weakening to a tropical storm.",
     "model_settings":{
         "event_set":{
             "name": "Event Set",
