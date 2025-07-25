@@ -1,11 +1,3 @@
-# python
-*pyc
-env/
-
-# oasis
-runs/
-
-# Large files
 JBA/Ghana/E635900/FLRF/keys_data/areaperil_dict.csv
 JBA/Ghana/E635900/FLRF/keys_data/areaperil_dict.parquet
 JBA/Ghana/E635900/FLRF/model_data/footprint.csv
