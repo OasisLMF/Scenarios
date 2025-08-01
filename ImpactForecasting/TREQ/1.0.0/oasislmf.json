@@ -4,6 +4,7 @@
     "lookup_module_path": "keys_data/1.0.0/key_server",
     "model_data_dir": "model_data/1.0.0",
     "model_version_csv": "model_data/1.0.0/ModelVersion.csv",
+    "model_settings_json": "meta-data/model_settings.json",
     "oed_location_csv": "tests/TREQ_P_test_loc_100.csv",
     "oed_account_csv": "tests/TREQ_acc.csv"
 }

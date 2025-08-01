@@ -4,5 +4,6 @@
     "lookup_config_json": "keys_data/lookup_config.json",
     "model_data_dir": "model_data",
     "model_version_csv": "keys_data/ModelVersion.csv",
+    "model_settings_json": "meta-data/model_settings.json",
     "oed_location_csv": "tests/test_2/location.csv"
 }
