@@ -1,6 +1,7 @@
 {
   "version": "3.2.9",
-  "description": "Impact Forecasting Turkey Earthquake Model\n\nEvent Response Oasis Package\n\n\n\n\n\nOn February 6, starting in the early morning hours, a series of strong earthquakes occurred in south Turkey and shook the Turkish-Syrian border region, claiming thousands of fatalities, causing notable material damage in both countries, and affecting millions of people across the region. The main shock was of M7.8.\n\n\n\nImpact Forecasting implemented the USGS footprints for 4 significant events of the sequence into an Oasis package ready to be run for potential client loss estimate.\n\n\n\n| USGS Event Name | Time | USGS Event ID |\n|-----------------|------|------------------|\n| M 7.8 Central Turkey | 02:17 | us6000jllz |\n| M 6.7 Central Turkey | 02:28 | us6000jlm1 |\n| M 7.5 4 km SSE of Ekinozu, Turkey | 11:24 | us6000jlqa |\n| M 6.0 Central Turkey | 13:02 |us6000jlrc |\n",
+  "name": "Turkey-Syria Earthquake series, February 6 2023",
+  "description": "On February 6 2023, starting in the early morning hours, a series of strong earthquakes occurred in south Turkey and shook the Turkish-Syrian border region, claiming thousands of fatalities, causing notable material damage in both countries, and affecting millions of people across the region. The main shock was of M7.8. Impact Forecasting implemented the USGS footprints for 4 significant events of the sequence into an Oasis package ready to be run for potential client loss estimate.",
   "model_settings": {},
   "lookup_settings": {}
 }
