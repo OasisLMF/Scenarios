@@ -6,8 +6,8 @@
 	 "event_set":{
             "name": "",
             "desc": "",
-            "default": "",
-            
+            "default": ""
+
 	 },
         "event_occurrence_id":{
             "name": "",
