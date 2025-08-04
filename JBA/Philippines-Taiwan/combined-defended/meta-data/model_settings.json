@@ -1,5 +1,10 @@
 {
     "version": "",
     "name": "Typhoon Gaemi flooding, Philippines July 2024 (defended).",
-    "description": "Typhoon Gaemi flooding, Philippines July 2024 (defended). Includes combined river and surface water flooding"
+    "description": "Typhoon Gaemi flooding, Philippines July 2024 (defended). Includes combined river and surface water flooding",
+    "model_settings":{},
+    "lookup_settings":{},
+    "data_settings": {
+        "group_fields": ["PortNumber", "AccNumber", "LocNumber"]
+    }
 }

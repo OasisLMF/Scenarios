@@ -2,20 +2,7 @@
     "version": "",
     "name": "1-in-100 year flood Southern Ghana. River and surface water flood.",
     "description": "A representative 1-in-100 year return period (1% annual probability) flood on the around Kumasi and Volta River, Ghana. River and surface water flood combined. Provided by JBA Risk Management.",
-    "model_settings":{
-	 "event_set":{
-            "name": "",
-            "desc": "",
-            "default": ""
-
-	 },
-        "event_occurrence_id":{
-            "name": "",
-            "desc": "",
-            "default": "",
-            "options":[]
-        }
-    },
+    "model_settings":{},
     "lookup_settings":{},
     "data_settings": {
         "group_fields": ["PortNumber", "AccNumber", "LocNumber"]
