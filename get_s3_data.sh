@@ -1,3 +1,3 @@
 #!/bin/bash
 
-xargs -a large_files.txt -I {} aws s3 sync s3://oasislmf-scenarios/{} ./{}
+xargs -a large_files.txt -I {} aws s3 cp --no-sign-request s3://oasislmf-scenarios/{} ./{}
