@@ -1,0 +1,16 @@
+./ImpactForecasting/EUWS/1.0.0
+./ImpactForecasting/MAEQ/1.0.0
+./ImpactForecasting/TREQ/1.0.0
+./ARA/US_Hurricane
+./JBA/Philippines-Taiwan/combined-undefended
+./JBA/Philippines-Taiwan/combined-defended
+./JBA/Philippines-Taiwan/tests/
+./JBA/Ghana/E635900/combined
+./JBA/Ghana/E760461/combined
+./JBA/Ghana/E689982/combined
+./JBA/Nepal/E505423/combined
+./JBA/Nepal/E151185/combined
+./JBA/Nepal/E432557/combined
+./JBA/Ghana/tests/
+./JBA/Nepal/tests/
+./IPE/FranceHail
