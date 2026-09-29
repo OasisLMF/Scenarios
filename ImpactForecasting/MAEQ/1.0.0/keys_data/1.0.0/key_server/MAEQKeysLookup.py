@@ -14,7 +14,6 @@ import numpy as np
 from oasislmf.lookup.builtin import Lookup
 from oasislmf.utils.coverages import COVERAGE_TYPES
 from oasislmf.utils.status import OASIS_KEYS_STATUS
-from oasislmf.utils.peril import PERILS
 from oasislmf.utils.log import oasis_log
 from oasislmf.utils.data import get_ids
 
@@ -51,7 +50,7 @@ class MAEQKeysLookup(Lookup):
         self.INPUT_COLUMNS = ['SITENUMBER','COUNTRYISO','LOCPERILSCOVERED','OCCUPANCYCLASS','OCCUPANCYSCHEME','BLDG','CONTENTS','TE']
         self.RELEVANT_COLUMNS = ['ACCNUMBER','LOCNUMBER','COUNTRYCODE','GEOGSCHEME1','GEOGNAME1','OCCUPANCYCODE',
                                  'BUILDINGTIV','CONTENTSTIV','BITIV','PORTNUMBER','LOC_ID','LOCPERILSCOVERED']
-        self.PERIL_ID = [ PERILS['earthquake']['id']]
+        self.PERIL_ID = [ 'QEQ']
     
     
     @oasis_log()
@@ -91,7 +90,7 @@ class MAEQKeysLookup(Lookup):
         GeogSchemes = ['IFMUN']
         Precisions = ['MUNICIPALITY']
 
-        df_ptf[geogs_cols] = df_ptf[geogs_cols].replace(GeogSchemes, Precisions)
+        df_ptf[geogs_cols] = df_ptf[geogs_cols].astype(object).replace(GeogSchemes, Precisions)
         df_geo = df_ptf[geogs_cols + geogn_cols]
 
         for geogs_col in geogs_cols:
@@ -102,7 +101,7 @@ class MAEQKeysLookup(Lookup):
             df_ptf = pd.concat([df_ptf, a], axis=1)
 
         df_ptf = df_ptf.loc[:, df_ptf.columns.notnull()]
-        df_ptf = df_ptf.groupby(level=0, axis=1).first()
+        df_ptf = df_ptf.T.groupby(level=0).first().T
 
         return df_ptf
 

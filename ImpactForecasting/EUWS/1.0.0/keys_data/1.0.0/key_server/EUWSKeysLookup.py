@@ -14,7 +14,6 @@ import numpy as np
 from oasislmf.lookup.builtin import Lookup
 from oasislmf.utils.coverages import COVERAGE_TYPES
 from oasislmf.utils.status import OASIS_KEYS_STATUS
-from oasislmf.utils.peril import PERILS
 from oasislmf.utils.log import oasis_log
 from oasislmf.utils.data import get_ids
 
@@ -55,7 +54,7 @@ class EUWSKeysLookup(Lookup):
                                  'GEOGSCHEME3','GEOGNAME3','GEOGSCHEME4','GEOGNAME4','GEOGSCHEME5','GEOGNAME5',
                                  'BUILDINGTIV','CONTENTSTIV','BITIV',
                                  'PORTNUMBER','LOC_ID','LOCPERILSCOVERED']
-        self.PERIL_ID = [ PERILS['winterstorm wind']['id']]
+        self.PERIL_ID = [ 'ZST']
     
     
     @oasis_log()
@@ -95,7 +94,7 @@ class EUWSKeysLookup(Lookup):
         GeogSchemes = ['IFSTA','IFDIS','CRH','IFMUN', 'CRL']
         Precisions = ['STATE','DISTRICT','CRESTAZONE','MUNICIPALITY', 'CRESTAZONE']
 
-        df_ptf[geogs_cols] = df_ptf[geogs_cols].replace(GeogSchemes, Precisions)
+        df_ptf[geogs_cols] = df_ptf[geogs_cols].astype(object).replace(GeogSchemes, Precisions)
         df_geo = df_ptf[geogs_cols + geogn_cols]
 
         for geogs_col in geogs_cols:
@@ -106,7 +105,7 @@ class EUWSKeysLookup(Lookup):
             df_ptf = pd.concat([df_ptf, a], axis=1)
 
         df_ptf = df_ptf.loc[:, df_ptf.columns.notnull()]
-        df_ptf = df_ptf.groupby(level=0, axis=1).first()
+        df_ptf = df_ptf.T.groupby(level=0).first().T
 
         return df_ptf
 
