@@ -105,12 +105,7 @@ class EUWSKeysLookup(Lookup):
             a = df_geo.pivot(columns=geogs_cols[i_scheme], values=geogn_cols[i_name])
             df_ptf = pd.concat([df_ptf, a], axis=1)
 
-        if df_ptf.columns.duplicated().any():
-            df_ptf = pd.concat(
-                [df_ptf.loc[:, df_ptf.columns == col].bfill(axis=1).iloc[:, 0]
-                 for col in dict.fromkeys(df_ptf.columns)],
-                axis=1
-            )
+        df_ptf = df_ptf.T.groupby(level=0).first().T
 
         return df_ptf
 
