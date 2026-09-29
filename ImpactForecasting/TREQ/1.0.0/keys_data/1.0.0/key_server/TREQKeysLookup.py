@@ -14,10 +14,12 @@ import numpy as np
 from oasislmf.lookup.builtin import Lookup
 from oasislmf.utils.coverages import COVERAGE_TYPES
 from oasislmf.utils.status import OASIS_KEYS_STATUS
-from oasislmf.utils.peril import PERILS
 from oasislmf.utils.log import oasis_log
 from oasislmf.utils.data import get_ids
 
+PERILS = {
+        'earthquake': {'id': 'QEQ'}
+        }
 
 class TREQKeysLookup(Lookup):
     """
@@ -26,7 +28,7 @@ class TREQKeysLookup(Lookup):
 
     @oasis_log()
     def __init__(self, config, config_dir=None, user_data_dir=None, output_dir=None):
-                 
+
         """
         Initialise the static data required for the lookup.
         """
@@ -56,16 +58,16 @@ class TREQKeysLookup(Lookup):
                                  'BUILDINGTIV','CONTENTSTIV','BITIV',
                                  'PORTNUMBER','LOC_ID','LOCPERILSCOVERED']
         self.PERIL_ID = [ PERILS['earthquake']['id']]
-    
-    
+
+
     @oasis_log()
     # Insert required columns into OED data frame.
     def insert_required_columns(self, df_ptf):
-        
+
         # Set class codes according to values in lookup json.
         def set_class_codes_simple(class_codes_keys, class_codes):
             return class_codes_keys.map(class_codes).fillna(class_codes['Otherwise'])
-        
+
         # Extract lookup codes from json
         with open(self.OED_TRANSFORMATION_FILE, 'r') as f:
             lookup_codes = json.load(f)
@@ -84,7 +86,7 @@ class TREQKeysLookup(Lookup):
         df_ptf['CONTENTS'] = df_ptf['CONTENTSTIV'].apply(lambda x: 1 if x > 0 else 0)
         df_ptf['TE'] = df_ptf['BITIV'].apply(lambda x: 1 if x > 0 else 0)
         df_ptf['OCCUPANCYSCHEME'] = 'IFE'
-        
+
         # Occupancy & Construction
         df_ptf['OCCUPANCYCLASS']  = set_class_codes_simple(df_ptf['OCCUPANCYCODE'].astype(str), class_codes=lookup_codes['occupancy_class_codes'])
 
@@ -110,14 +112,14 @@ class TREQKeysLookup(Lookup):
 
         return df_ptf
 
-    
+
     @oasis_log()
     # Process location rows - passed in as a pandas dataframe.
     def process_locations(self, df_ptf_orig):
-        
+
         # Portfolio
         df_ptf = df_ptf_orig.copy()
-        
+
         # Check for loc_id
         df_ptf.columns = df_ptf.columns.str.lower()
         if 'loc_id' not in df_ptf:
@@ -134,53 +136,53 @@ class TREQKeysLookup(Lookup):
         # Load country and location hiererchy files
         df_countries = pd.read_csv(self.COUNTRIES_FILE)
         df_location_fields = pd.read_csv(self.LOCATION_HIERARCHY_FILE)
-        
+
         # Go through country-by-country
         for country in df_countries['CountryISO']:
-            
+
             df_ptf_country = df_ptf.loc[df_ptf['COUNTRYISO'] == int(country)]
             df_location_fields_country = df_location_fields.loc[df_location_fields['CountryISO'] == int(country)]
-            
+
             if len(df_ptf_country.index) > 0:
                 # check if input data frame contains at least one supported location field
                 location_hierarchy = pd.Series(df_location_fields_country.PrecisionName.values,index=df_location_fields_country.HierarchyOrder).to_dict()
                 location_fields = list(location_hierarchy.values())
-                
+
                 # If gridcell is an option in Location Hierarchy, replace "gridcell" with "longitude" and "latitude"
                 if 'GRIDCELL' in location_fields:
                     location_fields.remove('GRIDCELL')
                     location_fields.extend(['LONGITUDE','LATITUDE'])
-                
+
                 # Which resolutions are given in the portfolio?
                 ptf_location_fields = [x for x in df_ptf_country.columns.values if x in location_fields]
                 if not ptf_location_fields or ptf_location_fields==['LONGITUDE'] or ptf_location_fields==['LATITUDE']:
                     raise Exception('No location field available in input file. Add at least one (or both coordinates) of these ' + str(location_fields))
-                
+
                 # add required output fields with initial values to portfolio
                 df_ptf_country['STATUS'] = OASIS_KEYS_STATUS['success']['id']
                 df_ptf_country['MESSAGE'] = None
-                
+
                 # Peril(s) covered by the model and precedence (based on the order in if_utiles)
                 df_perils = pd.DataFrame(data={'PERILSTRING':self.PERIL_ID, 'PRECEDENCE':range(1, len(self.PERIL_ID)+1)})
-                
-                # Peril(s) 
+
+                # Peril(s)
                 df_perils_model = pd.read_csv(self.PERIL_FILE)
-                
+
                 # Assign perilID
                 df_ptf_country = self.assign_perilID(df_ptf_country, df_perils, df_perils_model)
-                
+
                 # assign areaperil ID to portfolio
                 df_finalloc = None
 
                 for hierarchy in sorted(location_hierarchy):
-                    
+
                     location_field = location_hierarchy[hierarchy].upper().replace(' ', '')
-                    
+
                     if location_field in ptf_location_fields or 'GRIDCELL' in location_field and all(x in ptf_location_fields for x in ['LATITUDE', 'LONGITUDE']):
 
                         geocoded, not_geocoded = self.assign_areaID(df_ptf_country, location_field, int(country))
                         geocoded = self.assign_areaperilID(geocoded)
-                        
+
                         if not not_geocoded.empty:
 
                             if df_finalloc is not None:
@@ -213,40 +215,40 @@ class TREQKeysLookup(Lookup):
                 # assign vulnerability ID
                 df_withvuln = self.assign_vulnerabilityID(df_withcov)
                 del df_withcov
-        
+
                 #return df_withvuln
                 for item in self.format_output(df_withvuln):
                     yield item
-    
-    
+
+
     @oasis_log()
     def assign_perilID(self, df_in, df_perils, df_perils_model):
-        
+
         # Add semicolons if necessary
         # Split into subperils at the semicolons
         # Drop the original peril column from portfolio
         df_in['LOCPERILSCOVERED'] = df_in['LOCPERILSCOVERED'].apply(lambda x: x +';'*(2-x.count(';')))
         df_in[['P1','P2','P3']] = df_in['LOCPERILSCOVERED'].str.split(';', expand=True)
         df_in.drop(columns =['LOCPERILSCOVERED'], inplace = True)
-        
+
         # Melt P1, P2, and P3 into a single column (PERILSTRING) and strip whitespace
         fields = [x for x in list(df_in.columns.values) if x not in ['P1','P2','P3']]
         df_meltperil = pd.melt(df_in, id_vars=fields, value_vars=['P1','P2','P3'], var_name='TEMPPERIL', value_name='PERILSTRING')
         df_meltperil.PERILSTRING = df_meltperil.PERILSTRING.str.strip()
-        
+
         df_out = pd.merge(df_meltperil, df_perils, how='left', on=['PERILSTRING'])
         df_out[['PRECEDENCE']] = df_out[['PRECEDENCE']].fillna(0)
         df_out['PRECEDENCE'] = df_out['PRECEDENCE'].astype(int)
-        
+
         # Assign peril id
         df_perils_model.columns = df_perils_model.columns.str.upper()
         df_out = pd.merge(df_out, df_perils_model, how='left', left_on=['PERILSTRING'], right_on=['PERIL_CODE'])
         df_out[['PERIL_ID']] = df_out[['PERIL_ID']].fillna(0)
         df_out['PERIL_ID'] = df_out['PERIL_ID'].astype('int32')
-     
+
         return df_out.loc[df_out['PRECEDENCE'] != 0,:]
-    
-    
+
+
     @oasis_log()
     def assign_areaID(self, df_in, location_field, country):
 
@@ -264,21 +266,21 @@ class TREQKeysLookup(Lookup):
         df_admin = df_admin.rename(columns={'UNITNAME': location_field})
         df_admin[location_field] = df_admin[location_field].astype(str)
         df_admin[location_field] = df_admin[location_field].str.upper()
-        
+
         df_in.columns = df_in.columns.str.upper()
         df_admin.columns = df_admin.columns.str.upper()
 
         df_temp = pd.merge(df_in, df_admin, how='left', on=['COUNTRYISO', location_field])
         df_temp.drop(columns = 'UNITID', inplace = True)
-        
+
         not_geocoded = df_temp[df_temp['AREA_ID'].isnull()]
         not_geocoded = not_geocoded[df_in.columns]
 
         geocoded = df_temp[np.isfinite(df_temp['AREA_ID'])]
-        
+
         return geocoded, not_geocoded
-    
-    
+
+
     @oasis_log()
     def assign_areaperilID(self, df_in):
         df_in.columns = df_in.columns.str.upper()
@@ -289,8 +291,8 @@ class TREQKeysLookup(Lookup):
         df_admin.columns = df_admin.columns.str.upper()
         geocoded = pd.merge(df_in, df_admin, on = ['AREA_ID', 'PERIL_ID'])
         return geocoded
-    
-    
+
+
     @oasis_log()
     def assign_coverageID(self, df_in, df_coverage):
         fields = [x for x in list(df_in.columns.values) if x not in ['BLDG','CONTENTS','TE']]
@@ -307,8 +309,8 @@ class TREQKeysLookup(Lookup):
         df_out.loc[df_out['VULNERABILITY_ID'].isnull() & df_out['MESSAGE'].isnull(), ['STATUS', 'MESSAGE']] = [OASIS_KEYS_STATUS['nomatch']['id'], 'Failed to assign vulnerability function']
         df_out.loc[df_out['VULNERABILITY_ID'].isnull(), ['VULNERABILITY_ID']] = -9999
         return df_out
-    
-    
+
+
     @oasis_log()
     def format_output(self, df_in):
         df_in = df_in.sort_values(by=['SITENUMBER','COVERAGE'])
