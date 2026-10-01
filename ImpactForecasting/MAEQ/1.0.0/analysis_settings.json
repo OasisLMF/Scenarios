@@ -3,7 +3,7 @@
     "analysis_tag": 1,
     "model_name_id": "maeq",
     "model_supplier_id": "ImpactForecasting",
-    "number_of_samples": 100,
+    "number_of_samples": 10,
     "model_settings": {
         "event_set": ""
     },

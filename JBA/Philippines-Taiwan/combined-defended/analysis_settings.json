@@ -2,16 +2,10 @@
         "gul_output": true,
         "gul_summaries": [
             {
-                "aalcalc": true,
-                "eltcalc": true,
                 "id": 1,
-                "oed_fields": ["LocNumber", "CountryCode"],
-                "return_period_file": false,
-                "lec_output": false,
-                "leccalc": {
-                    "full_uncertainty_aep": true,
-                    "full_uncertainty_oep": true,
-                    "return_period_file": true
+                "ord_output": {
+                  "elt_moment": true,
+                  "alt_meanonly": true
                 }
             }
         ],
@@ -21,5 +15,6 @@
          },
         "model_name_id": "Philipines-Taiwan-Defended",
         "model_supplier_id": "JBA",
-        "number_of_samples": 10
+        "number_of_samples": 10,
+        "oed_fields": ["LocNumber"]
 }
