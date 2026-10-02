@@ -17,9 +17,6 @@ from oasislmf.utils.status import OASIS_KEYS_STATUS
 from oasislmf.utils.log import oasis_log
 from oasislmf.utils.data import get_ids
 
-PERILS = {
-        'earthquake': {'id': 'QEQ'}
-        }
 
 class TREQKeysLookup(Lookup):
     """
@@ -57,7 +54,7 @@ class TREQKeysLookup(Lookup):
                                  'GEOGSCHEME3','GEOGNAME3','GEOGSCHEME4','GEOGNAME4','GEOGSCHEME5','GEOGNAME5',
                                  'BUILDINGTIV','CONTENTSTIV','BITIV',
                                  'PORTNUMBER','LOC_ID','LOCPERILSCOVERED']
-        self.PERIL_ID = [ PERILS['earthquake']['id']]
+        self.PERIL_ID = ['QEQ']
 
 
     @oasis_log()

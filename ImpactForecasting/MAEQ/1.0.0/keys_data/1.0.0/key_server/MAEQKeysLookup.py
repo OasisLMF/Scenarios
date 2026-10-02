@@ -17,9 +17,6 @@ from oasislmf.utils.status import OASIS_KEYS_STATUS
 from oasislmf.utils.log import oasis_log
 from oasislmf.utils.data import get_ids
 
-PERILS = {
-        'earthquake': {'id': 'QEQ'}
-        }
 
 class MAEQKeysLookup(Lookup):
     """
@@ -53,7 +50,7 @@ class MAEQKeysLookup(Lookup):
         self.INPUT_COLUMNS = ['SITENUMBER','COUNTRYISO','LOCPERILSCOVERED','OCCUPANCYCLASS','OCCUPANCYSCHEME','BLDG','CONTENTS','TE']
         self.RELEVANT_COLUMNS = ['ACCNUMBER','LOCNUMBER','COUNTRYCODE','GEOGSCHEME1','GEOGNAME1','OCCUPANCYCODE',
                                  'BUILDINGTIV','CONTENTSTIV','BITIV','PORTNUMBER','LOC_ID','LOCPERILSCOVERED']
-        self.PERIL_ID = [ PERILS['earthquake']['id']]
+        self.PERIL_ID = ['QEQ']
 
 
     @oasis_log()
