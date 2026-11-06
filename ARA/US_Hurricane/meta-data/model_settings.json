@@ -20,7 +20,7 @@
         "vulnerability": {
             "source": "Emanuel (2011) wind damage function, from the Oasis VulnerabilityLibrary",
             "url": "https://github.com/OasisLMF/VulnerabilityLibrary/tree/main/VulnerabilityFunctions/Emanuel",
-            "description": "One function for every building: damage ratio = v³ / (1 + v³), where v = (V − 25.7) / (74.7 − 25.7) and V is the peak gust from ARA's wind footprint. Building type and occupancy are not used. Emanuel, K. (2011), Global warming effects on U.S. hurricane damage, Weather, Climate, and Society 3, 261–268."
+            "description": "One function for every building: damage ratio = v³ / (1 + v³), where v = (V − 57.5) / (167.1 − 57.5) and V is the peak gust in mph from ARA's wind footprint (Emanuel's thresholds of 25.7 and 74.7 m/s, converted to mph). Emanuel defined the function for sustained wind speeds, so applying it to gusts gives higher damage. Building type and occupancy are not used. Emanuel, K. (2011), Global warming effects on U.S. hurricane damage, Weather, Climate, and Society 3, 261–268."
         },
         "group_fields": ["PortNumber", "AccNumber", "LocNumber"]
     }
