@@ -1,7 +1,7 @@
 {
     "model": {
-        "supplier_id": "OasisLMF",
-        "model_id": "ParisWindstorm",
+        "supplier_id": "ARA",
+        "model_id": "US-Hurricane",
         "model_version": "1.1.0"
     },
     "builtin_lookup_type": "new_lookup",
