@@ -1,6 +1,6 @@
 {
     "version": "3.2.9",
-    "name": "European Windstorm Ciarán and Domingos",
+    "name": "Storms Ciarán and Domingos, Nov 2023",
     "description": "Wind speed footprint for windstorm Ciarán (Western Europe November 1-2 2023) and low-pressure system Domingos (Western Europe November 4-7 2023).",
     "model_settings":{
 	 "event_set":{

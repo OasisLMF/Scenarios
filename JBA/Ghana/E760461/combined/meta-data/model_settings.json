@@ -1,0 +1,10 @@
+{
+    "version": "",
+    "name": "Ghana 1-in-100 year flood",
+    "description": "A representative 1-in-100 year return period (1% annual probability) flood for Ghana: event E760461 from JBA's Ghana flood event catalogue. River and surface water flood combined. Provided by JBA Risk Management.",
+    "model_settings":{},
+    "lookup_settings":{},
+    "data_settings": {
+        "group_fields": ["PortNumber", "AccNumber", "LocNumber"]
+    }
+}
