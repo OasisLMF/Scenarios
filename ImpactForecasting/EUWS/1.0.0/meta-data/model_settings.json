@@ -1,15 +1,14 @@
 {
     "version": "3.2.9",
-    "name": "Storms Ciarán and Domingos, Nov 2023",
-    "description": "Wind speed footprint for windstorm Ciarán (Western Europe November 1-2 2023) and low-pressure system Domingos (Western Europe November 4-7 2023).",
+    "name": "Storm Ciarán, Nov 2023",
+    "description": "Wind speed footprints for windstorm Ciarán, which hit Western Europe on November 1-2 2023 (events 1-3). Three footprints represent the uncertainty in the wind field: they are interpolated from UK Met Office station data using the nearest 15, 30 and 40 stations, giving progressively smoother wind fields.",
     "model_settings":{
 	 "event_set":{
             "name": "Event Set",
             "desc": "Event Set selection",
-            "default": "cieren",
+            "default": "ciaran",
             "options":[
-                {"id":"ciaran", "desc": "Storm Ciaran Nov 2023", "number_of_events": 3},
-                {"id":"domingos", "desc": "Storm Domingos Nov 2023", "number_of_events": 3}
+                {"id":"ciaran", "desc": "Storm Ciarán Nov 2023 (3 footprints)", "number_of_events": 3}
             ]
 	 },
         "event_occurrence_id":{
