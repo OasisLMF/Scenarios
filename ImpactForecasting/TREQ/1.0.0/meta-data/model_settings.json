@@ -3,5 +3,11 @@
   "name": "Türkiye–Syria earthquakes, Feb 2023",
   "description": "On February 6 2023, starting in the early morning hours, a series of strong earthquakes occurred in south Turkey and shook the Turkish-Syrian border region, claiming thousands of fatalities, causing notable material damage in both countries, and affecting millions of people across the region. The main shock was of M7.8. Impact Forecasting implemented the USGS footprints for 4 significant events of the sequence into an Oasis package ready to be run for potential client loss estimate.",
   "model_settings": {},
-  "lookup_settings": {}
+  "lookup_settings": {},
+  "data_settings": {
+    "vulnerability": {
+      "source": "Impact Forecasting damage functions, supplied with the Türkiye earthquake scenario",
+      "description": "Damage functions by occupancy (residential, commercial, industrial) and coverage (buildings, contents and business interruption), varying by region. Construction type is not used."
+    }
+  }
 }

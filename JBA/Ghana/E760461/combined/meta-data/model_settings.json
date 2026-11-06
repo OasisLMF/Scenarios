@@ -5,6 +5,11 @@
     "model_settings":{},
     "lookup_settings":{},
     "data_settings": {
+        "vulnerability": {
+            "source": "JRC global flood depth-damage functions (Huizinga, De Moel and Szewczyk, 2017)",
+            "url": "https://publications.jrc.ec.europa.eu/repository/handle/JRC105688",
+            "description": "Damage by flood depth from the JRC global flood depth-damage functions for Africa, by occupancy class: residential, commercial, industrial, transport, infrastructure or agriculture (from the OED occupancy code). These are not JBA's own vulnerability functions; JBA provided the flood footprints."
+        },
         "group_fields": ["PortNumber", "AccNumber", "LocNumber"]
     }
 }

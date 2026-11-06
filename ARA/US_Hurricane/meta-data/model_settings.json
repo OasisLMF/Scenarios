@@ -17,6 +17,11 @@
     },
     "lookup_settings":{},
     "data_settings": {
+        "vulnerability": {
+            "source": "Emanuel (2011) wind damage function, from the Oasis VulnerabilityLibrary",
+            "url": "https://github.com/OasisLMF/VulnerabilityLibrary/tree/main/VulnerabilityFunctions/Emanuel",
+            "description": "One function for every building: damage ratio = v³ / (1 + v³), where v = (V − 25.7) / (74.7 − 25.7) and V is the peak gust from ARA's wind footprint. Building type and occupancy are not used. Emanuel, K. (2011), Global warming effects on U.S. hurricane damage, Weather, Climate, and Society 3, 261–268."
+        },
         "group_fields": ["PortNumber", "AccNumber", "LocNumber"]
     }
 }
