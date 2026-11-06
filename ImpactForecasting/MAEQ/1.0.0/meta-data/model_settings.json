@@ -19,6 +19,10 @@
     },
     "lookup_settings":{},
     "data_settings": {
+        "vulnerability": {
+            "source": "Impact Forecasting damage functions, supplied with the Morocco earthquake scenario",
+            "description": "Damage functions by occupancy (residential, commercial, industrial, agricultural) and coverage (buildings, contents and business interruption). Construction type is not used."
+        },
         "group_fields": ["PortNumber", "AccNumber", "LocNumber"]
     }
 }

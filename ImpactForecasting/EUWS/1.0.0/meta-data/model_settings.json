@@ -20,6 +20,10 @@
     },
     "lookup_settings":{},
     "data_settings": {
+        "vulnerability": {
+            "source": "Impact Forecasting damage functions, supplied with the European windstorm scenario",
+            "description": "Damage functions by occupancy (residential, commercial, industrial, agricultural) and coverage (buildings, contents and business interruption), varying by country and region. Construction type is not used."
+        },
         "group_fields": ["PortNumber", "AccNumber", "LocNumber"]
     }
 }

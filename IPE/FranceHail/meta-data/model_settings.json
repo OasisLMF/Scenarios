@@ -3,5 +3,11 @@
   "name": "Hailstorm Ela, Jun 2014",
   "description": "France Hailstorm - Historical Event 'Ela', 6-10 June, 2014.",
   "model_settings": {},
-  "lookup_settings": {}
+  "lookup_settings": {},
+  "data_settings": {
+    "vulnerability": {
+      "source": "IPE aggregate hail damage functions, supplied with the scenario",
+      "description": "Two functions: homeowners' property and motor vehicles. Locations are matched by OED occupancy (General Residential) and construction code (Automobile for vehicles, Unknown for homes). Damage for a given hail intensity is uncertain, so samples vary."
+    }
+  }
 }
