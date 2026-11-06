@@ -1,0 +1,25 @@
+{
+    "version": "3.2.9",
+    "name": "Storm Domingos, Nov 2023",
+    "description": "Wind speed footprints for low-pressure system Domingos, which affected parts of Western Europe on November 4-7 2023 (events 4-6). Three footprints represent the uncertainty in the wind field: they are interpolated from UK Met Office station data using the nearest 15, 30 and 40 stations, giving progressively smoother wind fields.",
+    "model_settings":{
+	 "event_set":{
+            "name": "Event Set",
+            "desc": "Event Set selection",
+            "default": "domingos",
+            "options":[
+                {"id":"domingos", "desc": "Storm Domingos Nov 2023 (3 footprints)", "number_of_events": 3}
+            ]
+	 },
+        "event_occurrence_id":{
+            "name": "Occurrence Set",
+            "desc": "Occurrence selection",
+            "default": "",
+            "options":[]
+        }
+    },
+    "lookup_settings":{},
+    "data_settings": {
+        "group_fields": ["PortNumber", "AccNumber", "LocNumber"]
+    }
+}
